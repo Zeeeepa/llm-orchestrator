@@ -25,6 +25,6 @@ tracing = { workspace = true }
 tracing-subscriber = { workspace = true }
 
 # Local dependencies
-llm-orchestrator-core = { version = "0.1.0", path = "../llm-orchestrator-core" }
-llm-orchestrator-providers = { version = "0.1.0", path = "../llm-orchestrator-providers" }
-llm-orchestrator-sdk = { version = "0.1.0", path = "../llm-orchestrator-sdk" }
+llm-orchestrator-core = { version = "0.1.1", path = "../llm-orchestrator-core" }
+llm-orchestrator-providers = { version = "0.1.1", path = "../llm-orchestrator-providers" }
+llm-orchestrator-sdk = { version = "0.1.1", path = "../llm-orchestrator-sdk" }
