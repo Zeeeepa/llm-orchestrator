@@ -23,7 +23,6 @@ tracing = { workspace = true }
 uuid = { workspace = true }
 
 # Local dependencies
-llm-orchestrator-core = { version = "0.1.0", path = "../llm-orchestrator-core" }
 llm-orchestrator-secrets = { version = "0.1.0", path = "../llm-orchestrator-secrets", optional = true }
 
 [features]
