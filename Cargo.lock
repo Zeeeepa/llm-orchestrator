@@ -1827,7 +1827,7 @@ checksum = "6373607a59f0be73a39b6fe456b8192fcc3585f602af20751600e974dd455e77"
 
 [[package]]
 name = "llm-orchestrator-audit"
-version = "0.1.1"
+version = "0.1.3"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -1850,7 +1850,7 @@ dependencies = [
 
 [[package]]
 name = "llm-orchestrator-auth"
-version = "0.1.1"
+version = "0.1.3"
 dependencies = [
  "argon2",
  "async-trait",
@@ -1870,7 +1870,7 @@ dependencies = [
 
 [[package]]
 name = "llm-orchestrator-cli"
-version = "0.1.1"
+version = "0.1.3"
 dependencies = [
  "anyhow",
  "clap",
@@ -1887,7 +1887,7 @@ dependencies = [
 
 [[package]]
 name = "llm-orchestrator-core"
-version = "0.1.1"
+version = "0.1.3"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -1916,7 +1916,7 @@ dependencies = [
 
 [[package]]
 name = "llm-orchestrator-providers"
-version = "0.1.1"
+version = "0.1.3"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -1935,7 +1935,7 @@ dependencies = [
 
 [[package]]
 name = "llm-orchestrator-sdk"
-version = "0.1.1"
+version = "0.1.3"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -1950,7 +1950,7 @@ dependencies = [
 
 [[package]]
 name = "llm-orchestrator-secrets"
-version = "0.1.1"
+version = "0.1.3"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -1971,7 +1971,7 @@ dependencies = [
 
 [[package]]
 name = "llm-orchestrator-state"
-version = "0.1.1"
+version = "0.1.3"
 dependencies = [
  "anyhow",
  "async-trait",
