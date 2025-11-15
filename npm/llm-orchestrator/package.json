@@ -1,6 +1,6 @@
 {
   "name": "@llm-dev-ops/llm-orchestrator",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Production-ready LLM workflow orchestrator with DAG execution, state management, and multi-provider support",
   "main": "index.js",
   "bin": {
