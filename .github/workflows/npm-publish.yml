@@ -105,9 +105,9 @@ jobs:
           # Publish each platform package
           for pkg in llm-orchestrator-linux-x64 llm-orchestrator-linux-arm64 llm-orchestrator-darwin-x64 llm-orchestrator-darwin-arm64; do
             echo "Publishing @llm-dev-ops/$pkg..."
-            cd npm/$pkg/$pkg
+            cd npm/$pkg
             npm publish --access public
-            cd ../../..
+            cd ../..
           done
 
       - name: Publish main package
