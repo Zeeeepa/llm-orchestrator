@@ -1,0 +1,45 @@
+{
+  "name": "@llm-dev-ops/llm-orchestrator",
+  "version": "0.1.1",
+  "description": "Production-ready LLM workflow orchestrator with DAG execution, state management, and multi-provider support",
+  "main": "index.js",
+  "bin": {
+    "llm-orchestrator": "bin/llm-orchestrator.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/globalbusinessadvisors/llm-orchestrator.git"
+  },
+  "keywords": [
+    "llm",
+    "ai",
+    "orchestrator",
+    "workflow",
+    "dag",
+    "openai",
+    "anthropic",
+    "claude",
+    "gpt"
+  ],
+  "author": "LLM DevOps Team",
+  "license": "MIT OR Apache-2.0",
+  "homepage": "https://github.com/globalbusinessadvisors/llm-orchestrator",
+  "optionalDependencies": {
+    "@llm-dev-ops/llm-orchestrator-linux-x64": "0.1.1",
+    "@llm-dev-ops/llm-orchestrator-linux-arm64": "0.1.1",
+    "@llm-dev-ops/llm-orchestrator-darwin-x64": "0.1.1",
+    "@llm-dev-ops/llm-orchestrator-darwin-arm64": "0.1.1",
+    "@llm-dev-ops/llm-orchestrator-win32-x64": "0.1.1"
+  },
+  "files": [
+    "index.js",
+    "bin/llm-orchestrator.js",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

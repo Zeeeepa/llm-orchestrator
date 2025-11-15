@@ -1,0 +1,130 @@
+name: Publish to npm
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (e.g., 0.1.1)'
+        required: true
+        type: string
+
+jobs:
+  build:
+    name: Build ${{ matrix.platform }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            platform: linux-x64
+            target: x86_64-unknown-linux-gnu
+            npm_package: llm-orchestrator-linux-x64
+            binary: llm-orchestrator
+
+          - os: ubuntu-latest
+            platform: linux-arm64
+            target: aarch64-unknown-linux-gnu
+            npm_package: llm-orchestrator-linux-arm64
+            binary: llm-orchestrator
+
+          - os: macos-latest
+            platform: darwin-x64
+            target: x86_64-apple-darwin
+            npm_package: llm-orchestrator-darwin-x64
+            binary: llm-orchestrator
+
+          - os: macos-latest
+            platform: darwin-arm64
+            target: aarch64-apple-darwin
+            npm_package: llm-orchestrator-darwin-arm64
+            binary: llm-orchestrator
+
+          - os: windows-latest
+            platform: win32-x64
+            target: x86_64-pc-windows-msvc
+            npm_package: llm-orchestrator-win32-x64
+            binary: llm-orchestrator.exe
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Rust
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          toolchain: stable
+          target: ${{ matrix.target }}
+
+      - name: Install cross-compilation tools (Linux ARM64)
+        if: matrix.platform == 'linux-arm64'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-aarch64-linux-gnu
+
+      - name: Build release binary
+        run: cargo build --release --target ${{ matrix.target }} -p llm-orchestrator-cli
+
+      - name: Prepare npm package
+        shell: bash
+        run: |
+          mkdir -p npm/${{ matrix.npm_package }}/bin
+          cp target/${{ matrix.target }}/release/${{ matrix.binary }} npm/${{ matrix.npm_package }}/bin/
+
+      - name: Upload binary artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.npm_package }}
+          path: npm/${{ matrix.npm_package }}/
+          retention-days: 1
+
+  publish:
+    name: Publish to npm
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: npm/
+
+      - name: List downloaded artifacts
+        run: ls -R npm/
+
+      - name: Publish platform-specific packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_SECRET }}
+        run: |
+          # Publish each platform package
+          for pkg in llm-orchestrator-linux-x64 llm-orchestrator-linux-arm64 llm-orchestrator-darwin-x64 llm-orchestrator-darwin-arm64 llm-orchestrator-win32-x64; do
+            echo "Publishing @llm-dev-ops/$pkg..."
+            cd npm/$pkg/$pkg
+            npm publish --access public
+            cd ../../..
+          done
+
+      - name: Publish main package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_SECRET }}
+        run: |
+          cd npm/llm-orchestrator
+          npm publish --access public
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
