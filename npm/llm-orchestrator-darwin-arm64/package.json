@@ -10,7 +10,8 @@
   "os": ["darwin"],
   "cpu": ["arm64"],
   "files": [
-    "bin/llm-orchestrator"
+    "bin/llm-orchestrator",
+    "README.md"
   ],
   "publishConfig": {
     "access": "public"

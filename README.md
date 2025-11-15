@@ -44,9 +44,36 @@ This project has successfully completed Phase 1-3 implementation with the follow
 
 ### Installation
 
+Choose your preferred installation method:
+
+#### Via npm (Recommended)
+
+```bash
+# Install globally
+npm install -g @llm-dev-ops/llm-orchestrator
+
+# Verify installation
+llm-orchestrator --version
+```
+
+#### Via Docker
+
+```bash
+# Pull the latest image
+docker pull ghcr.io/globalbusinessadvisors/llm-orchestrator:latest
+
+# Run a workflow
+docker run -v $(pwd):/workspace \
+  -e OPENAI_API_KEY="$OPENAI_API_KEY" \
+  ghcr.io/globalbusinessadvisors/llm-orchestrator:latest \
+  run /workspace/workflow.yaml --input '{"name": "Alice"}'
+```
+
+#### Build from Source
+
 ```bash
 # Clone and build from source
-git clone https://github.com/llm-devops/llm-orchestrator.git
+git clone https://github.com/globalbusinessadvisors/llm-orchestrator.git
 cd llm-orchestrator
 cargo build --release
 

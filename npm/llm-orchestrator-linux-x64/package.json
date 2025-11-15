@@ -10,7 +10,8 @@
   "os": ["linux"],
   "cpu": ["x64"],
   "files": [
-    "bin/llm-orchestrator"
+    "bin/llm-orchestrator",
+    "README.md"
   ],
   "publishConfig": {
     "access": "public"

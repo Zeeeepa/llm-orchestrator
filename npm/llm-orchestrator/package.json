@@ -25,10 +25,10 @@
   "license": "MIT OR Apache-2.0",
   "homepage": "https://github.com/globalbusinessadvisors/llm-orchestrator",
   "optionalDependencies": {
-    "@llm-dev-ops/llm-orchestrator-linux-x64": "0.1.1",
-    "@llm-dev-ops/llm-orchestrator-linux-arm64": "0.1.1",
-    "@llm-dev-ops/llm-orchestrator-darwin-x64": "0.1.1",
-    "@llm-dev-ops/llm-orchestrator-darwin-arm64": "0.1.1"
+    "@llm-dev-ops/llm-orchestrator-linux-x64": "0.1.2",
+    "@llm-dev-ops/llm-orchestrator-linux-arm64": "0.1.2",
+    "@llm-dev-ops/llm-orchestrator-darwin-x64": "0.1.2",
+    "@llm-dev-ops/llm-orchestrator-darwin-arm64": "0.1.2"
   },
   "files": [
     "index.js",
